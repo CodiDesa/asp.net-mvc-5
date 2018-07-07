@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace Model.Auth
             // Add custom user claims here
             return userIdentity;
         }
+        // Ultima visita
+        //public DateTime LastVisit {get;set;}
 
         // Create additional parameters to persist on the cookie
         public async static Task<ClaimsIdentity> CreateUserClaims(
@@ -42,5 +45,6 @@ namespace Model.Auth
 
             return await Task.FromResult(identity);
         }
+            
     }
 }

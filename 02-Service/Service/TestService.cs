@@ -18,10 +18,10 @@ namespace Service
     {
         private readonly IDbContextScopeFactory _dbContextScopeFactory;
         private readonly IRepository<Course> _courseRepo;
+
         public TestService(
             IDbContextScopeFactory dbContextScopeFactory,
             IRepository<Course> courseRepo
-
             )
         {
             _dbContextScopeFactory = dbContextScopeFactory;
@@ -33,7 +33,8 @@ namespace Service
             var courses = new List<Course>();
             using (var ctx = _dbContextScopeFactory.CreateReadOnly())
             {
-                courses = _courseRepo.GetAll(x=>x.StudentPerCourses).ToList();
+                courses = _courseRepo.GetAll(x => x.StudentPerCourses.Select(y=>y.Student)).ToList();
+
             }
                 return courses;
         }
